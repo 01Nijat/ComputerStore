@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Computers</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="computers.js" defer></script>
+  <link rel="stylesheet" href="computers.css">
+  <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css"
+    />
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+          console.log("computers-table-element begin");
+          $("#computers-table-element").DataTable({
+            pageLength: 5,
+            lengthMenu: [
+              [2, 5, 7, 10, 20, 30, 50, 100, -1],
+              [2, 5, 7, 10, 20, 30, 50, 100, "Hamısı"],
+            ],
+          });
+          console.log("computers-table-element end");
+        });
+      </script>
+</head>
+<body>
+    <div class="container-fluid" id="main-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <hr>
+                <a href="index.html" class="btn btn-warning">Əsas səhifə</a>
+                <button class="btn btn-primary" onclick="onNewComputer()">Yeni komputer</button>
+                <hr>
+                <div id="computer-loading">
+                    <div class="spinner-border"></div>
+                </div>
+
+                <div id="computers-table">
+                    <table class="table table-bordered" id="computers-table-element">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%;">ID</th>
+                                <th style="width: 30%;">Ad</th>
+                                <th style="width: 20%;">Sekil</th>
+                                <th style="width: 15%;">Qiymet</th>
+                                <th style="width: 25%;">Emeliyyatlar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="computers-table-body" style="font-size: 15px;"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="save-computer-modal">
+        <div id="save-computer-modal-content">
+            <div style="overflow: auto; margin-bottom: 5px;">
+                <span id="save-computer-modal-close-button">x</span>
+            </div>
+
+            <h1 id="save-computer-header-message" style="text-align: center;"></h1>
+            <div id="save-computer-modal-form-div">
+                <form action="" id="save-computer-modal-form" class="was-validated" onsubmit="onSaveComputer(event)">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="computer-category">Kateqoriya:</label>
+                                <select name="computer-category" id="computer-category" required class="form-control">
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-name">Ad:</label>
+                                <input type="text" name="computer-name" id="computer-name" required
+                                class="form-control"  minlength="3" maxlength="30">
+                                <div class="valid-feedback">Dogrudur</div>
+                                <div class="invalid-feedback">Bos qoymayin. Minimum 3, maksimum 30 simvol ola biler</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-price">Qiymet:</label>
+                                <input type="number" name="computer-price" id="computer-price" required
+                                class="form-control" min="100" max="10000" step="10">
+                                <div class="valid-feedback">Dogrudur</div>
+                                <div class="invalid-feedback">Bos qoymayin. Minimum 100, maksimum 10000 ola biler</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-description">Tesviri:</label>
+                                <input type="text" id="computer-description" name="computer-description" class="form-control"
+                                required minlength="3" maxlength="100">
+                                <div class="valid-feedback">Dogrudur</div>
+                                <div class="invalid-feedback">Bos qoymayin. Minimum 3, maksimum 100 simvol ola biler</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-isNew">Yeni:</label>
+                                <select name="computer-isNew" id="computer-isNew" class="form-control">
+                                    <option value="true">Beli</option>
+                                    <option value="false">Xeyr</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-image">Sekil:</label>
+                                <input type="text" name="computer-image" id="computer-image" class="form-control" required
+                                oninput="onComputerImageChange(this)">
+                                <div class="valid-feedback">Dogrudur</div>
+                                <div class="invalid-feedback">Bos qoymayin</div>
+                            </div>
+
+                            <div>
+                                 <img src="" alt="Bu linkde sekil yoxdur" style="display: none;" id="computer-image-show">
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="computer-ram">Emeli yaddas:</label>
+                                <input type="number" class="form-control" required id="computer-ram"
+                                name="computer-ram" min="3" max="100">
+                                <div class="valid-feedback">Dogrudur</div>
+                                <div class="invalid-feedback">Bos qoymayin. Minimum 3, maksimum 100 ola biler</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-cpu">Merkezi prosessor:</label>
+                                <input type="text" name="computer-cpu" id="computer-cpu" class="form-control"
+                                required minlength="3" maxlength="100">
+                                <div class="valid-feedback">Dogrudur</div>
+                                <div class="invalid-feedback">Bos qoymayin. Minimum 3, maksimum 100 simvol ola biler</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-drive">Daimi yaddas:</label>
+                                <input type="number" class="form-control" id="computer-drive" name="computer-drive"
+                                required min="100" max="10000" step="100">
+                                <div class="valid-feedback">Dogrudur</div>
+                                <div class="invalid-feedback">Bos qoymayin. Minimum 100, maksimum 10000 ola biler</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-drive-type">Daimi yaddasin tipi:</label>
+                                <select name="computer-drive-type" id="computer-drive-type" required class="form-control">
+                                    <option value="hdd">HDD</option>
+                                    <option value="ssd">SSD</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-os">Emeliyyat sistemi:</label>
+                                <input type="text" class="form-control" id="computer-os" name="computer-os" required
+                                minlength="3" maxlength="100">
+                                <div class="valid-feedback">Dogrudur</div>
+                                <div class="invalid-feedback">Bos qoymayin. Minimum 3, maksimum 100 simvol ola biler</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-video-card">Video card:</label>
+                                <input type="number" class="form-control" id="computer-video-card" name="computer-video-card"
+                                required min="3" max="100" step="10">
+                                <div class="valid-feedback">Dogrudur</div>
+                                <div class="invalid-feedback">Bos qoymayin. Minimum 3, maksimum 100 ola biler</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button class="btn btn-success" type="submit">Yadda saxla</button>
+                            <button class="btn btn-primary" type="reset" onclick="">Melumatlari sifirla</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <input type="text" class="form-control" placeholder="Axtaris" id="computer-search-input"
+    style="display: none;" >
+
+    <div id="computer-image-modal">
+        <div id="computer-image-modal-content">
+            <img id="computer-modal-image-show">
+        </div>
+    </div>
+
+    
+
+</body>
+</html>
