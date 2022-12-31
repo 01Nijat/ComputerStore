@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Bootstrap Example</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <script src="main.js"></script>
+    <script src="createAccount.js" defer></script>
+
+
+      <div class="container">
+           <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <hr>
+                    <a href="index.html" class="btn btn-warning">Əsas səhifə</a>
+                    <hr>
+                    <h3>Hesab yaratmaq</h3>
+                    <hr>
+                    <div class="alert alert-danger" id="Error" style="display:none;"></div>
+                    <div class="alert alert-success" id="Success" style="display:none ;"></div>
+                    <form action="" class="was-validated" onsubmit="CreateAccount(event)">
+                        <div class="form-group">
+                            <label for="Name">Ad:</label>
+                            <input type="text" name="name" id="Name" class="form-control" minlength="2" maxlength="30" required placeholder="Adınızı daxil edin...">
+                         <div class="valid-feedback">Doğrudur</div>
+                         <div class="invalid-feedback">Boş qoymayın.Minimum 2,Maksimum 30 simvol ola bilər</div>
+                        </div>
+
+                        <div class="form-group">
+                             <label for="Tel">Telefon nömrəsi:</label>
+                             <input type="text" name="Tell" id="Tel" class="form-control" placeholder="Telefon nömrənizi daxil edin" required pattern="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"
+                             >
+                             <div class="valid-feedback">Doğrudur</div>
+                             <div class="invalid-feedback">Boş qoymayın.Telefon nömrəsi(xxx-xxx-xxxx) formatında olmalıdır</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">İstifadəçi adı:</label>
+                            <input type="text" id="userName" name="username" placeholder="İstifadəçi adınızı daxil edin..." required class="form-control">
+                            <div class="valid-feedback">Doğrudur</div>
+                            <div class="invalid-feedback">Boş qoymayın</div>
+                       </div>
+
+                       <div class="form-group">
+                        <label for="password">Şifrə:</label> 
+                        <input type="password" name="Password" id="password" class="form-control" required placeholder="Şifrənizi daxil edin...">                                       
+          
+          
+          
+                        
+          
+                        <div class="valid-feedback">Doğrudur</div>
+          
+                        <div class="invalid-feedback">Boş qoymayın</div>
+
+
+                        
+                    </form>
+             <button type="submit" class="btn btn-success">Hesab yaratmaq</button> 
+             <hr>
+    <p>Artıq hesbın mövcuddur?</p>         <a href="login.html" class="btn btn-primary">Hesaba daxil ol</a>
+                </div>
+                <div class="col-sm-3">
+                    <div class="ut">
+                        <input type="radio" name="password1" onclick="show()" > görsətmək          <input type="radio" name="password1" onclick="hide()"> gizlətmək   
+                    </div>
+                </div>
+           </div>
+      </div>
+</body>
+</html>
