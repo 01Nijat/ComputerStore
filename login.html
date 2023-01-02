@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="login.js" defer></script>
+  <script src="main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <hr>
+                <a href="index.html" class="btn btn-warning">Əsas səhifə</a>
+                <hr>
+                <h2>Hesaba daxil olmaq</h2>
+                <hr>
+                <div class="alert alert-danger" id="login-error-alert" style="display: none;"></div>
+                <div class="alert alert-success" id="login-success-alert" style="display: none;"></div>
+                <form action="" class="was-validated" onsubmit="onLogin(event)">
+                    <div class="form-group">
+                        <label for="username">İstifadəçi adı:</label>
+                        <input type="text" name="username" id="username" required 
+                        class="form-control" placeholder="Enter username">
+                        <div class="valid-feedback">Doğrudur</div>
+                        <div class="invalid-feedback">Boş qoymayın</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Şifrə:</label>
+                        <input type="password" name="password" id="password" required
+                        placeholder="Enter password" class="form-control">
+                        <div class="valid-feedback">Doğrudur</div>
+                        <div class="invalid-feedback">Boş qoymayın</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Hesaba daxil ol</button>
+                    <hr>
+                    <span>Hesabın yoxdur?</span>
+                    <a class="btn btn-info" id="Createaccountpress" href="createAccount.html">Hesab yarat</a>
+                </form>
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
